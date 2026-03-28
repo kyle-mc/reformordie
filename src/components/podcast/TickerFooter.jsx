@@ -62,7 +62,7 @@ export default function TickerFooter() {
         </span>
         <div className="flex items-center gap-6">
           <a
-            href="https://open.spotify.com/show/0"
+            href="https://open.spotify.com/show/4JiVd7NQay86Xah5k9Q02A"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors"

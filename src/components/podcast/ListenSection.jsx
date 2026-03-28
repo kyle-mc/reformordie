@@ -33,7 +33,7 @@ const YoutubeLogo = () => (
 const platforms = [
   {
     name: "Spotify",
-    url: "https://open.spotify.com/show/0",
+    url: "https://open.spotify.com/show/4JiVd7NQay86Xah5k9Q02A",
     gradient: "from-emerald-200 via-stone-200 to-emerald-100",
     logo: <SpotifyLogo />,
   },
@@ -51,6 +51,28 @@ const platforms = [
   },
 ];
 
+const RssTile = () => (
+  <motion.a
+    href="https://media.rss.com/reform-or-die/feed.xml"
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 60 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.45 }}
+    viewport={{ once: true }}
+    className="relative flex-shrink-0 w-64 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500 snap-start"
+  >
+    <svg viewBox="0 0 24 24" className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors duration-500" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M4 11a9 9 0 019 9" strokeLinecap="round" />
+      <path d="M4 4a16 16 0 0116 16" strokeLinecap="round" />
+      <circle cx="5" cy="19" r="1.5" fill="currentColor" />
+    </svg>
+    <span className="text-sm tracking-[0.15em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+      RSS Feed
+    </span>
+  </motion.a>
+);
+
 export default function ListenSection() {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -60,7 +82,7 @@ export default function ListenSection() {
   const x = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-40 overflow-hidden">
+    <section ref={sectionRef} className="py-24 md:py-40">
       {/* Section label */}
       <div className="px-6 md:px-12 mb-16">
         <motion.div
@@ -88,33 +110,25 @@ export default function ListenSection() {
         </motion.h2>
       </div>
 
-      {/* Horizontal scrolling tiles */}
-      <motion.div style={{ x }} className="flex gap-6 md:gap-8 px-6 md:px-12">
-        {platforms.map((platform, index) => (
-          <PlatformTile key={platform.name} platform={platform} index={index} />
-        ))}
+      {/* Mobile: native swipe scroll with snap */}
+      <div className="md:hidden overflow-x-auto hide-scrollbar px-6 pb-4">
+        <div className="flex gap-6 w-max snap-x snap-mandatory">
+          {platforms.map((platform, index) => (
+            <PlatformTile key={platform.name} platform={platform} index={index} />
+          ))}
+          <RssTile />
+        </div>
+      </div>
 
-        {/* RSS Feed tile */}
-        <motion.a
-          href="https://media.rss.com/reform-or-die/feed.xml"
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          viewport={{ once: true }}
-          className="relative flex-shrink-0 w-72 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500"
-        >
-          <svg viewBox="0 0 24 24" className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors duration-500" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M4 11a9 9 0 019 9" strokeLinecap="round" />
-            <path d="M4 4a16 16 0 0116 16" strokeLinecap="round" />
-            <circle cx="5" cy="19" r="1.5" fill="currentColor" />
-          </svg>
-          <span className="text-sm tracking-[0.15em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-            RSS Feed
-          </span>
-        </motion.a>
-      </motion.div>
+      {/* Desktop: scroll-driven parallax */}
+      <div className="hidden md:block overflow-hidden">
+        <motion.div style={{ x }} className="flex gap-8 px-12">
+          {platforms.map((platform, index) => (
+            <PlatformTile key={platform.name} platform={platform} index={index} />
+          ))}
+          <RssTile />
+        </motion.div>
+      </div>
     </section>
   );
 }

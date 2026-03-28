@@ -45,7 +45,7 @@ export default function HeroSection() {
         transition={{ duration: 1, delay: 0.8 }}
         className="mt-8 text-base md:text-lg text-muted-foreground tracking-wide max-w-md font-light text-center"
       >
-        Everything must be reformed. Join the conversation.
+        Everything must be reformed.<br />Join the conversation.
       </motion.p>
 
       {/* Scroll indicator */}

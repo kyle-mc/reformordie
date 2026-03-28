@@ -4,7 +4,7 @@ import PageNotFound from './lib/PageNotFound';
 
 function App() {
   return (
-    <Router basename="/reformordie">
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<PageNotFound />} />

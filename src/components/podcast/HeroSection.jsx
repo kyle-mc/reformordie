@@ -8,7 +8,7 @@ export default function HeroSection() {
   const taglineRightX = useTransform(scrollY, [0, 500], [0, 120]);
 
   return (
-    <section id="top" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 bg-gradient-to-b from-[#EDF4ED] via-[#f5faf5] to-white">
       {/* Hero image — fully visible, centered */}
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}

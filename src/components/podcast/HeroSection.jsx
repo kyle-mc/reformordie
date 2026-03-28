@@ -1,16 +1,22 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 
+const HERO_IMAGE = `${import.meta.env.BASE_URL}images/ROD-Main-D.png`;
+
 export default function HeroSection() {
   const { scrollY } = useScroll();
   const taglineLeftX = useTransform(scrollY, [0, 500], [0, -120]);
   const taglineRightX = useTransform(scrollY, [0, 500], [0, 120]);
-  const overlayOpacity = useTransform(scrollY, [0, 400], [0.3, 0.6]);
+  const overlayOpacity = useTransform(scrollY, [0, 400], [0.45, 0.75]);
 
   return (
     <section id="top" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Gradient background replacing CDN image */}
+      {/* Hero image background */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-stone-300 via-amber-100 to-stone-400" />
+        <img
+          src={HERO_IMAGE}
+          alt="Reform Or Die"
+          className="w-full h-full object-cover"
+        />
         <motion.div
           className="absolute inset-0 bg-background"
           style={{ opacity: overlayOpacity }}

@@ -30,6 +30,15 @@ const YoutubeLogo = () => (
   </svg>
 );
 
+const SubstackLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-16 h-16" fill="currentColor">
+    <path
+      d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"
+      className="text-foreground group-hover:text-primary transition-colors duration-500"
+    />
+  </svg>
+);
+
 const platforms = [
   {
     name: "Spotify",
@@ -48,6 +57,12 @@ const platforms = [
     url: "https://www.youtube.com/channel/UCWRp5w3fCvqBnGETu_QVzng",
     gradient: "from-red-200 via-stone-200 to-orange-100",
     logo: <YoutubeLogo />,
+  },
+  {
+    name: "Substack",
+    url: "https://reformordie.substack.com",
+    gradient: "from-orange-200 via-stone-200 to-amber-100",
+    logo: <SubstackLogo />,
   },
 ];
 

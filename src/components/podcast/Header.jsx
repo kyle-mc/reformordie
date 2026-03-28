@@ -38,7 +38,7 @@ export default function Header() {
           <span className="absolute inset-0 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           <span className="relative z-10 flex items-center gap-2">
             <Coffee className="w-3.5 h-3.5" />
-            Buy Me a Coffee
+            Buy Us a Coffee
           </span>
         </a>
       </div>

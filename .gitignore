@@ -29,3 +29,6 @@ dist-ssr
 
 .env
 .vite
+
+# Local notes — not tracked by git
+/notes

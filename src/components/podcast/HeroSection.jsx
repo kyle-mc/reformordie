@@ -1,10 +1,7 @@
-import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
-  const logoScale = useTransform(scrollY, [0, 500], [1, 0.8]);
-  const logoOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const taglineLeftX = useTransform(scrollY, [0, 500], [0, -120]);
   const taglineRightX = useTransform(scrollY, [0, 500], [0, 120]);
   const overlayOpacity = useTransform(scrollY, [0, 400], [0.3, 0.6]);
@@ -22,61 +19,6 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <motion.div
-          style={{ scale: logoScale, opacity: logoOpacity }}
-          className="mb-8"
-        >
-          <svg
-            viewBox="0 0 200 200"
-            className="w-32 h-32 md:w-48 md:h-48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="10"
-              y="10"
-              width="180"
-              height="180"
-              stroke="hsl(var(--foreground))"
-              strokeWidth="1"
-              fill="none"
-            />
-            <rect
-              x="30"
-              y="30"
-              width="140"
-              height="140"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              fill="none"
-            />
-            <line
-              x1="100"
-              y1="50"
-              x2="100"
-              y2="150"
-              stroke="hsl(var(--foreground))"
-              strokeWidth="1"
-            />
-            <line
-              x1="50"
-              y1="100"
-              x2="150"
-              y2="100"
-              stroke="hsl(var(--foreground))"
-              strokeWidth="1"
-            />
-            <circle
-              cx="100"
-              cy="100"
-              r="25"
-              stroke="hsl(var(--primary))"
-              strokeWidth="2"
-              fill="none"
-            />
-          </svg>
-        </motion.div>
-
         {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}

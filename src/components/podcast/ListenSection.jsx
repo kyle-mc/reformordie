@@ -1,10 +1,6 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import PlatformTile from "./PlatformTile";
-
-const SPOTIFY_IMG = "https://media.base44.com/images/public/69c6fba4be55ce024b949ec3/685963081_generated_52895b2f.png";
-const APPLE_IMG = "https://media.base44.com/images/public/69c6fba4be55ce024b949ec3/553c170e4_generated_70368f8a.png";
-const YOUTUBE_IMG = "https://media.base44.com/images/public/69c6fba4be55ce024b949ec3/39839510f_generated_503a4cd6.png";
 
 const SpotifyLogo = () => (
   <svg viewBox="0 0 48 48" className="w-16 h-16" fill="currentColor">
@@ -38,19 +34,19 @@ const platforms = [
   {
     name: "Spotify",
     url: "https://open.spotify.com/show/0",
-    image: SPOTIFY_IMG,
+    gradient: "from-emerald-200 via-stone-200 to-emerald-100",
     logo: <SpotifyLogo />,
   },
   {
     name: "Apple Podcasts",
     url: "https://podcasts.apple.com/us/podcast/reform-or-die/id1875146399",
-    image: APPLE_IMG,
+    gradient: "from-violet-200 via-stone-200 to-pink-100",
     logo: <AppleLogo />,
   },
   {
     name: "YouTube",
     url: "https://www.youtube.com/channel/UCWRp5w3fCvqBnGETu_QVzng",
-    image: YOUTUBE_IMG,
+    gradient: "from-red-200 via-stone-200 to-orange-100",
     logo: <YoutubeLogo />,
   },
 ];
@@ -107,7 +103,7 @@ export default function ListenSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
           viewport={{ once: true }}
-          className="relative flex-shrink-0 w-72 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/30 transition-colors duration-500"
+          className="relative flex-shrink-0 w-72 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500"
         >
           <svg viewBox="0 0 24 24" className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors duration-500" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M4 11a9 9 0 019 9" strokeLinecap="round" />

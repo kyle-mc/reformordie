@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -18,18 +18,14 @@ export default function PlatformTile({ platform, index }) {
       onMouseLeave={() => setIsHovered(false)}
       className="relative flex-shrink-0 w-72 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group cursor-pointer block"
     >
-      {/* Background Image */}
+      {/* Gradient background */}
       <motion.div
         animate={{ scale: isHovered ? 1.08 : 1 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="absolute inset-0"
       >
-        <img
-          src={platform.image}
-          alt={platform.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-background/70 group-hover:bg-background/50 transition-all duration-500" />
+        <div className={`w-full h-full bg-gradient-to-br ${platform.gradient}`} />
+        <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-all duration-500" />
       </motion.div>
 
       {/* Content */}
@@ -40,9 +36,9 @@ export default function PlatformTile({ platform, index }) {
             0{index + 1}
           </span>
           <motion.div
-            animate={{ 
+            animate={{
               opacity: isHovered ? 1 : 0,
-              rotate: isHovered ? 0 : -45 
+              rotate: isHovered ? 0 : -45
             }}
             transition={{ duration: 0.3 }}
           >
@@ -54,7 +50,7 @@ export default function PlatformTile({ platform, index }) {
         <div className="flex-1 flex items-center justify-center">
           <motion.div
             animate={{
-              filter: isHovered ? "drop-shadow(0 0 20px hsl(72 100% 50% / 0.4))" : "none",
+              filter: isHovered ? "drop-shadow(0 0 20px hsl(42 96% 44% / 0.5))" : "none",
             }}
             transition={{ duration: 0.4 }}
           >

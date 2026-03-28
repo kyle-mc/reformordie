@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-const HERO_IMAGE = "https://media.base44.com/images/public/69c6fba4be55ce024b949ec3/23cd26507_generated_8084100a.png";
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
@@ -9,17 +7,13 @@ export default function HeroSection() {
   const logoOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const taglineLeftX = useTransform(scrollY, [0, 500], [0, -120]);
   const taglineRightX = useTransform(scrollY, [0, 500], [0, 120]);
-  const overlayOpacity = useTransform(scrollY, [0, 400], [0.55, 0.85]);
+  const overlayOpacity = useTransform(scrollY, [0, 400], [0.3, 0.6]);
 
   return (
     <section id="top" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+      {/* Gradient background replacing CDN image */}
       <div className="absolute inset-0">
-        <img
-          src={HERO_IMAGE}
-          alt="Monolithic stone split by light"
-          className="w-full h-full object-cover"
-        />
+        <div className="w-full h-full bg-gradient-to-br from-stone-300 via-amber-100 to-stone-400" />
         <motion.div
           className="absolute inset-0 bg-background"
           style={{ opacity: overlayOpacity }}
@@ -32,7 +26,6 @@ export default function HeroSection() {
           style={{ scale: logoScale, opacity: logoOpacity }}
           className="mb-8"
         >
-          {/* Podcast Logo Placeholder - Monolithic SVG */}
           <svg
             viewBox="0 0 200 200"
             className="w-32 h-32 md:w-48 md:h-48"

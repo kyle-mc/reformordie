@@ -75,7 +75,7 @@ const RssTile = () => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: 0.45 }}
     viewport={{ once: true }}
-    className="relative flex-shrink-0 w-64 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500 snap-start"
+    className="relative flex-shrink-0 w-full md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500 snap-start"
   >
     <svg viewBox="0 0 24 24" className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors duration-500" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M4 11a9 9 0 019 9" strokeLinecap="round" />
@@ -125,18 +125,17 @@ export default function ListenSection() {
         </motion.h2>
       </div>
 
-      {/* Mobile: native swipe scroll with snap */}
-      <div className="md:hidden overflow-x-auto hide-scrollbar px-6 pb-4">
-        <div className="flex gap-6 w-max snap-x snap-mandatory">
+      {/* Mobile: 2-column grid */}
+      <div className="md:hidden px-6 pb-4">
+        <div className="grid grid-cols-2 gap-4">
           {platforms.map((platform, index) => (
             <PlatformTile key={platform.name} platform={platform} index={index} />
           ))}
-          <RssTile />
         </div>
       </div>
 
       {/* Desktop: scroll-driven parallax */}
-      <div className="hidden md:block overflow-hidden">
+      <div className="hidden md:block overflow-x-auto hide-scrollbar">
         <motion.div style={{ x }} className="flex gap-8 px-12">
           {platforms.map((platform, index) => (
             <PlatformTile key={platform.name} platform={platform} index={index} />

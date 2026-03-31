@@ -16,7 +16,7 @@ export default function PlatformTile({ platform, index }) {
       viewport={{ once: true }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative flex-shrink-0 w-64 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group cursor-pointer block snap-start"
+      className="relative flex-shrink-0 w-full md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group cursor-pointer block snap-start"
     >
       {/* Gradient background */}
       <motion.div

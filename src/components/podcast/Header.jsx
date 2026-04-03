@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Coffee } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,15 +30,15 @@ export default function Header() {
         </a>
 
         <a
-          href="https://buymeacoffee.com"
+          href="https://ko-fi.com/R6R71X70Y8"
           target="_blank"
           rel="noopener noreferrer"
           className="relative overflow-hidden border border-foreground/20 rounded-full px-5 py-2 text-xs tracking-[0.1em] uppercase text-foreground/80 hover:text-primary-foreground transition-colors duration-500 group"
         >
           <span className="absolute inset-0 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           <span className="relative z-10 flex items-center gap-2">
-            <Coffee className="w-3.5 h-3.5" />
-            Buy Us a Coffee
+            <Heart className="w-3.5 h-3.5" />
+            Support Our Work
           </span>
         </a>
       </div>

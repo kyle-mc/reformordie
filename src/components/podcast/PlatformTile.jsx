@@ -12,11 +12,18 @@ export default function PlatformTile({ platform, index }) {
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
+      transition={{ duration: 0.6, delay: index * 0.15, y: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] } }}
       viewport={{ once: true }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="relative flex-shrink-0 w-full md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group cursor-pointer block snap-start"
+      animate={{ y: isHovered ? -8 : 0 }}
+      style={{
+        boxShadow: isHovered
+          ? '0 16px 40px rgba(0,0,0,0.13)'
+          : '0 2px 8px rgba(0,0,0,0.05)',
+        transition: 'box-shadow 0.3s ease',
+      }}
     >
       {/* Gradient background */}
       <motion.div
@@ -24,17 +31,14 @@ export default function PlatformTile({ platform, index }) {
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="absolute inset-0"
       >
-        <div className={`w-full h-full bg-gradient-to-br ${platform.gradient}`} />
+        <div className={`w-full h-full ${platform.gradient}`} />
         <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-all duration-500" />
       </motion.div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-between h-full p-8">
         {/* Platform number */}
-        <div className="flex items-start justify-between">
-          <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-            0{index + 1}
-          </span>
+        <div className="flex items-start justify-end">
           <motion.div
             animate={{
               opacity: isHovered ? 1 : 0,

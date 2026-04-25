@@ -19,7 +19,7 @@ const AppleLogo = () => (
 const YoutubeLogo = () => (
   <svg viewBox="0 0 48 34" className="w-16 h-12" fill="currentColor">
     <path
-      d="M47.04 5.28C46.5 3.18 44.88 1.56 42.78 1.02 39.06 0 24 0 24 0S8.94 0 5.22 1.02C3.12 1.56 1.5 3.18.96 5.28 0 9 0 17 0 17s0 8 .96 11.72c.54 2.1 2.16 3.72 4.26 4.26C8.94 34 24 34 24 34s15.06 0 18.78-1.02c2.1-.54 3.72-2.16 4.26-4.26C48 25 48 17 48 17s0-8-.96-11.72zM19.2 24.2V9.8L31.68 17 19.2 24.2z"
+      d="M47.04 5.28C46.5 3.18 44.88 1.56 42.78 1.02 39.06 0 24 0 24 0S8.94 0 5.22 1.02C3.12 1.56 1.5 3.18.96 5.28 0 9 0 17 0 17s0 8 .96 11.72c.54 2.1 2.16 3.72 4.26 4.26C8.94 34 24 34 24 34s15.06 0 18.78-10.2c2.1-.54 3.72-2.16 4.26-4.26C48 25 48 17 48 17s0-8-.96-11.72zM19.2 24.2V9.8L31.68 17 19.2 24.2z"
       className="text-foreground group-hover:text-primary transition-colors duration-500"
     />
   </svg>
@@ -37,26 +37,26 @@ const SubstackLogo = () => (
 const platforms = [
   {
     name: "Spotify",
-    url: "https://open.spotify.com/show/4JiVd7NQay86Xah5k9Q02A",
-    gradient: "from-emerald-200 via-stone-200 to-emerald-100",
+    url: "https://spotify.com",
+    gradient: "bg-gradient-to-t from-emerald-300 to-white",
     logo: <SpotifyLogo />,
   },
   {
     name: "Apple",
     url: "https://podcasts.apple.com/us/podcast/reform-or-die/id1875146399",
-    gradient: "from-violet-200 via-stone-200 to-pink-100",
+    gradient: "bg-gradient-to-t from-purple-300 to-pink-50",
     logo: <AppleLogo />,
   },
   {
     name: "YouTube",
     url: "https://www.youtube.com/channel/UCWRp5w3fCvqBnGETu_QVzng",
-    gradient: "from-red-200 via-stone-200 to-orange-100",
+    gradient: "bg-gradient-to-t from-red-300 to-white",
     logo: <YoutubeLogo />,
   },
   {
     name: "Substack",
     url: "https://reformordie.substack.com",
-    gradient: "from-orange-200 via-stone-200 to-amber-100",
+    gradient: "bg-gradient-to-t from-orange-300 to-white",
     logo: <SubstackLogo />,
   },
 ];
@@ -92,7 +92,10 @@ export default function ListenSection() {
   const x = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-40">
+    <section 
+      ref={sectionRef} 
+      className="relative z-0 py-24 md:py-32 bg-[#EDF4ED]"
+    >
       {/* Section label */}
       <div className="px-6 md:px-12 mb-16">
         <motion.div

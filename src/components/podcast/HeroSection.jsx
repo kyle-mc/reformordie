@@ -50,7 +50,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-full max-w-3xl md:max-w-5xl px-6 md:px-12 relative z-10"
+        className="w-full max-w-3xl md:max-w-6xl lg:max-w-7xl px-6 md:px-8 relative z-10"
       >
         <div className="aspect-video w-full overflow-hidden bg-foreground/5 shadow-2xl">
           {videoId && (

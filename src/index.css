@@ -62,6 +62,21 @@
 }
 
 
+/* Abolition Adobe font */
+.font-abolition {
+  font-family: 'abolition', sans-serif;
+}
+
+/* Reverse ticker — scrolls right */
+@keyframes ticker-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-ticker-reverse {
+  animation: ticker-reverse 40s linear infinite;
+}
+
 /* Horizontal scroll section */
 .hide-scrollbar {
   -ms-overflow-style: none;

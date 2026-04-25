@@ -91,13 +91,43 @@ export default function ListenSection() {
   });
   const x = useTransform(scrollYProgress, [0, 1], ["12%", "-10%"]);
 
+  const marqueeRows = [
+    { direction: "left",  duration: "90s"  },
+    { direction: "right", duration: "110s" },
+    { direction: "left",  duration: "80s"  },
+    { direction: "right", duration: "120s" },
+    { direction: "left",  duration: "100s" },
+  ];
+
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="relative z-0 py-24 md:py-32 bg-[#EDF4ED]"
     >
+      {/* Background marquee */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none flex flex-col">
+        {marqueeRows.map(({ direction, duration }, i) => (
+          <div key={i} className="flex-1 overflow-hidden flex items-center">
+            <div
+              className={direction === "left" ? "animate-ticker" : "animate-ticker-reverse"}
+              style={{ display: "flex", whiteSpace: "nowrap", animationDuration: duration }}
+            >
+              {[...Array(12)].map((_, j) => (
+                <span
+                  key={j}
+                  className="italic font-black uppercase"
+                  style={{ fontSize: "13rem", lineHeight: 1, letterSpacing: "-0.03em", paddingRight: "3.5rem", color: "transparent", WebkitTextStroke: "1.5px rgba(48,16,20,0.25)" }}
+                >
+                  CHRIST IS KING
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Section label */}
-      <div className="px-6 md:px-12 mb-16">
+      <div className="relative z-10 px-6 md:px-12 mb-16">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -124,7 +154,7 @@ export default function ListenSection() {
       </div>
 
       {/* Mobile: 2-column grid */}
-      <div className="md:hidden px-6 pb-4">
+      <div className="relative z-10 md:hidden px-6 pb-4">
         <div className="grid grid-cols-2 gap-4">
           {platforms.map((platform, index) => (
             <PlatformTile key={platform.name} platform={platform} index={index} />
@@ -133,7 +163,7 @@ export default function ListenSection() {
       </div>
 
       {/* Desktop: scroll-driven parallax */}
-      <div className="hidden md:block overflow-x-auto hide-scrollbar">
+      <div className="relative z-10 hidden md:block overflow-x-auto hide-scrollbar">
         <motion.div style={{ x }} className="flex gap-8 px-12 pt-4 pb-16">
           {platforms.map((platform, index) => (
             <PlatformTile key={platform.name} platform={platform} index={index} />

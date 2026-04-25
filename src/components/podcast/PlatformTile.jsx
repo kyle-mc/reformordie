@@ -64,7 +64,7 @@ export default function PlatformTile({ platform, index }) {
         </div>
 
         <div className="flex flex-col items-center md:items-start space-y-1">
-          <h3 className="text-3xl font-black uppercase tracking-tighter italic text-foreground/90 leading-none">
+          <h3 className="hidden md:block text-3xl font-black uppercase tracking-tighter italic text-foreground/90 leading-none">
             {platform.name}
           </h3>
           

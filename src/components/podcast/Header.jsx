@@ -38,7 +38,7 @@ export default function Header() {
           </a>
           <a
             href="#contact"
-            className="text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-300"
+            className="text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-300 hidden md:block"
           >
             Contact
           </a>

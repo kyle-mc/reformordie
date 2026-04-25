@@ -61,6 +61,7 @@
   animation: ticker 30s linear infinite;
 }
 
+
 /* Horizontal scroll section */
 .hide-scrollbar {
   -ms-overflow-style: none;

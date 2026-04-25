@@ -2,21 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-// count parameter requires a paid rss2json key — omit it and take items[0]
 const FEED_URL =
   "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freformordie.substack.com%2Ffeed";
-
-function stripHtml(html = "") {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/\s+/g, " ")
-    .trim();
-}
 
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString("en-US", {
@@ -27,15 +14,15 @@ function formatDate(dateStr) {
 }
 
 export default function SubstackFeed() {
-  const [post, setPost] = useState(null);
-  const [status, setStatus] = useState("loading"); // loading | ready | error
+  const [posts, setPosts] = useState([]);
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
     fetch(FEED_URL)
       .then((r) => r.json())
       .then((data) => {
         if (data.status === "ok" && data.items?.length > 0) {
-          setPost(data.items[0]);
+          setPosts(data.items.slice(0, 5));
           setStatus("ready");
         } else {
           setStatus("error");
@@ -56,7 +43,7 @@ export default function SubstackFeed() {
         >
           <div className="w-12 h-px bg-primary" />
           <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
-            From The Blog
+            From The Substack
           </span>
         </motion.div>
 
@@ -69,29 +56,27 @@ export default function SubstackFeed() {
         >
           Latest
           <br />
-          <span className="text-primary">Article</span>
+          <span className="text-primary">Articles</span>
         </motion.h2>
 
         {status === "loading" && (
-          <div className="max-w-3xl border border-border p-8 md:p-12 animate-pulse">
-            <div className="h-3 bg-muted-foreground/10 rounded w-32 mb-6" />
-            <div className="h-8 bg-muted-foreground/10 rounded w-full mb-3" />
-            <div className="h-8 bg-muted-foreground/10 rounded w-2/3 mb-8" />
-            <div className="space-y-2 mb-10">
-              <div className="h-4 bg-muted-foreground/10 rounded w-full" />
-              <div className="h-4 bg-muted-foreground/10 rounded w-full" />
-              <div className="h-4 bg-muted-foreground/10 rounded w-3/4" />
-            </div>
-            <div className="pt-6 border-t border-border flex justify-between">
-              <div className="h-3 bg-muted-foreground/10 rounded w-28" />
-              <div className="h-3 bg-muted-foreground/10 rounded w-16" />
-            </div>
+          <div className="max-w-3xl animate-pulse">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="flex items-center justify-between py-5 border-t border-border gap-6">
+                <div className="flex items-center gap-6 flex-1">
+                  <div className="h-3 bg-muted-foreground/10 rounded w-6 flex-shrink-0" />
+                  <div className="h-5 bg-muted-foreground/10 rounded w-2/3" />
+                </div>
+                <div className="h-3 bg-muted-foreground/10 rounded w-28 flex-shrink-0 hidden md:block" />
+              </div>
+            ))}
+            <div className="border-t border-border" />
           </div>
         )}
 
         {status === "error" && (
           <p className="text-sm text-muted-foreground tracking-wide">
-            Couldn't load the latest article right now.{" "}
+            Couldn't load articles right now.{" "}
             <a
               href="https://reformordie.substack.com"
               target="_blank"
@@ -103,44 +88,34 @@ export default function SubstackFeed() {
           </p>
         )}
 
-        {status === "ready" && post && (() => {
-          const excerpt = stripHtml(post.description || "");
-          const truncated = excerpt.length > 240 ? excerpt.slice(0, 240).trimEnd() + "…" : excerpt;
-          return (
-            <motion.a
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group block max-w-3xl border border-border p-8 md:p-12 hover:border-primary/50 transition-colors duration-500"
-            >
-              <span className="text-xs font-mono text-muted-foreground/40">01</span>
-
-              <h3 className="mt-4 text-2xl md:text-4xl font-black uppercase tracking-[-0.03em] leading-tight group-hover:text-primary transition-colors duration-300">
-                {post.title}
-              </h3>
-
-              {truncated && (
-                <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-                  {truncated}
-                </p>
-              )}
-
-              <div className="mt-10 pt-6 border-t border-border flex items-center justify-between">
-                <span className="text-xs tracking-[0.1em] uppercase text-muted-foreground">
-                  {formatDate(post.pubDate)}
-                </span>
-                <span className="flex items-center gap-1.5 text-xs tracking-[0.1em] uppercase text-muted-foreground group-hover:text-primary transition-colors duration-300">
-                  Read Article
+        {status === "ready" && posts.length > 0 && (
+          <div className="max-w-3xl">
+            {posts.map((post, index) => (
+              <motion.a
+                key={post.link}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="group flex flex-col lg:flex-row lg:items-baseline lg:justify-between gap-1 lg:gap-6 py-5 border-t border-border hover:border-primary/40 transition-colors duration-300"
+              >
+                <div className="flex items-baseline gap-6 min-w-0">
+                  <span className="text-lg md:text-xl font-black uppercase tracking-[-0.02em] leading-tight group-hover:text-primary transition-colors duration-300">
+                    {post.title}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0 text-xs tracking-[0.1em] uppercase text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                  <span>{formatDate(post.pubDate)}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </motion.a>
-          );
-        })()}
+                </div>
+              </motion.a>
+            ))}
+            <div className="border-t border-border" />
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0 }}

@@ -70,7 +70,7 @@ const RssTile = () => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: 0.45 }}
     viewport={{ once: true }}
-    className="relative flex-shrink-0 w-full md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-border group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500 snap-start"
+    className="relative flex-shrink-0 w-full md:w-80 lg:w-96 aspect-[3/4] overflow-hidden border border-neutral-800/35 group flex flex-col items-center justify-center gap-6 hover:border-primary/50 transition-colors duration-500 snap-start"
   >
     <svg viewBox="0 0 24 24" className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors duration-500" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M4 11a9 9 0 019 9" strokeLinecap="round" />
@@ -89,7 +89,7 @@ export default function ListenSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-10%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["12%", "-10%"]);
 
   return (
     <section 
@@ -134,7 +134,7 @@ export default function ListenSection() {
 
       {/* Desktop: scroll-driven parallax */}
       <div className="hidden md:block overflow-x-auto hide-scrollbar">
-        <motion.div style={{ x }} className="flex gap-8 px-12">
+        <motion.div style={{ x }} className="flex gap-8 px-12 pt-4 pb-16">
           {platforms.map((platform, index) => (
             <PlatformTile key={platform.name} platform={platform} index={index} />
           ))}

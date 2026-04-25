@@ -12,8 +12,12 @@ export default function Home() {
       <Header />
       <HeroSection />
       <ListenSection />
-      <SubstackFeed />
-      <ContactSection />
+      <div className="purple-section relative bg-[#791E94] rounded-2xl p-[10px] md:rounded-3xl md:py-[25px] md:px-0">
+        <div className="relative bg-[#FFFFF2] rounded-xl overflow-hidden md:grid md:grid-cols-2 md:divide-x md:divide-border md:mx-[35px] md:rounded-2xl">
+          <SubstackFeed />
+          <ContactSection />
+        </div>
+      </div>
       <TickerFooter />
     </div>
   );

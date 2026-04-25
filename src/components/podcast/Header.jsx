@@ -31,12 +31,6 @@ export default function Header() {
 
         <div className="flex items-center gap-6">
           <a
-            href="#articles"
-            className="text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-300 hidden md:block"
-          >
-            Articles
-          </a>
-          <a
             href="#contact"
             className="text-xs tracking-[0.15em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-300 hidden md:block"
           >

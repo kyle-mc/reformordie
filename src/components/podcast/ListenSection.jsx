@@ -42,7 +42,7 @@ const platforms = [
     logo: <SpotifyLogo />,
   },
   {
-    name: "Apple Podcasts",
+    name: "Apple",
     url: "https://podcasts.apple.com/us/podcast/reform-or-die/id1875146399",
     gradient: "from-violet-200 via-stone-200 to-pink-100",
     logo: <AppleLogo />,

@@ -1,26 +1,52 @@
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const HERO_IMAGE = `${import.meta.env.BASE_URL}images/ROD-Main-D.png`;
+const FEED_URL =
+  "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCWRp5w3fCvqBnGETu_QVzng";
+
+function extractVideoId(link = "") {
+  try { return new URL(link).searchParams.get("v"); } catch { return null; }
+}
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
   const taglineLeftX = useTransform(scrollY, [0, 500], [0, -120]);
   const taglineRightX = useTransform(scrollY, [0, 500], [0, 120]);
+  const [videoId, setVideoId] = useState(null);
+
+  useEffect(() => {
+    fetch(FEED_URL)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.status === "ok" && data.items?.length > 0) {
+          setVideoId(extractVideoId(data.items[0].link));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="top" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 bg-gradient-to-b from-[#EDF4ED] via-[#f5faf5] to-white">
-      {/* Hero image — fully visible, centered */}
+      {/* Latest YouTube video — centered above title */}
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-full max-w-2xl px-8 md:px-12"
+        className="w-full max-w-3xl md:max-w-5xl px-6 md:px-12"
       >
-        <img
-          src={HERO_IMAGE}
-          alt="Reform Or Die"
-          className="w-full h-auto object-contain"
-        />
+        <div className="aspect-video w-full overflow-hidden bg-foreground/5">
+          {videoId && (
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="Reform Or Die — Latest Episode"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          )}
+        </div>
       </motion.div>
 
       {/* Title */}

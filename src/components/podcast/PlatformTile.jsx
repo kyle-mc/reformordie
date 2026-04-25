@@ -59,7 +59,7 @@ export default function PlatformTile({ platform, index }) {
         </div>
 
         {/* Bottom section */}
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <h3 className="text-xl font-bold uppercase tracking-[-0.02em] mb-2">
             {platform.name}
           </h3>

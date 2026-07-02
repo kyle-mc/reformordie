@@ -54,5 +54,6 @@ Single-page React app (Vite + Tailwind + Framer Motion). One route (`/`) renders
 - RSS: `https://media.rss.com/reform-or-die/feed.xml`
 - Substack: `https://reformordie.substack.com`
 - Ko-fi: `https://ko-fi.com/R6R71X70Y8`
+- Discord: `https://discord.gg/26FYrVhzc`
 
-These URLs appear in multiple places (`ListenSection.jsx`, `TickerFooter.jsx`). Update all occurrences if they change.
+These URLs appear in multiple places (`ListenSection.jsx`, `TickerFooter.jsx`, `DiscordBanner.jsx`). Update all occurrences if they change.
